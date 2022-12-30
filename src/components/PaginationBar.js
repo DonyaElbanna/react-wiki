@@ -2,7 +2,6 @@ import React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 
 const theme = createTheme({
   palette: {
@@ -31,7 +30,6 @@ const PaginationBar = ({ info, setPage }) => {
   return (
     <div class="pagination">
       <ThemeProvider theme={theme}>
-        {/* <CssBaseline/> */}
         <Stack alignItems="center">
           <Pagination
             count={info.pages}

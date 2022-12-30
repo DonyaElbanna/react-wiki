@@ -1,6 +1,6 @@
 .App {
-  margin: 0 1%;
-  width: 97%;
+  margin: 0 2%;
+  width: 95%;
 }
 
 h1 {
@@ -18,12 +18,32 @@ h1 {
   text-align: center;
   margin-bottom: 2%;
   color: rgb(255, 255, 255);
+  /* display: grid;
+  grid-template-columns: auto auto; */
 }
+
+/* .search > input {
+  color: whitesmoke;
+} */
 
 /* Filter */
 
 .filter {
   color: whitesmoke;
+  text-align: center;
+}
+
+.filter a {
+  color: #8fd746;
+  margin-top: 3%;
+}
+
+.filter a:hover {
+  background-color: #16161675;
+}
+
+.filter-btns {
+  margin-bottom: 5%;
 }
 
 /* Card */

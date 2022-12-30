@@ -12,7 +12,7 @@ const CardItem = ({ results }) => {
       sm={8}
       md={9}
       container
-      rowSpacing={1}
+      rowSpacing={5}
       columnSpacing={{ sm: 1, md: 2 }}
     >
       {results ? (
@@ -21,7 +21,7 @@ const CardItem = ({ results }) => {
             result;
           return (
             <Grid xs={12} sm={6} md={4} lg={3}>
-              <Card sx={{ maxWidth: 300 }} key={id}>
+              <Card sx={{ maxWidth: 400 }} key={id}>
                 <div style={{ position: "relative" }}>
                   <Badge
                     color={

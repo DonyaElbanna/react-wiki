@@ -28,7 +28,7 @@ const theme = createTheme({
   },
   typography: {
     // fontFamily: ["Roboto"],
-    fontSize: 18,
+    fontSize: 16,
   },
 });
 
@@ -100,7 +100,7 @@ function App() {
         <CssBaseline />
         <h1>Characters</h1>
         <Search setSearchInput={setSearchInput} />
-        <Grid container spacing={1}>
+        <Grid container spacing={5}>
           <Grid xs={12} sm={4} md={3}>
             <Filter />
           </Grid>

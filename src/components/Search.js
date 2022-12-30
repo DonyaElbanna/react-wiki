@@ -29,12 +29,15 @@ const Search = ({ setSearchInput }) => {
 
   return (
     <div className="search">
-      <ThemeProvider  theme={theme}>
+      <ThemeProvider theme={theme}>
         <Input
           type="text"
           placeholder="Seach For Characters..."
           onChange={(e) => setSearchInput(e.target.value)}
-          style={{backgroundColor: 'gray'}}
+          style={{
+            paddingLeft: "1%",
+            color: "white",
+          }}
           color="accent"
         ></Input>
         <Button variant="contained" color="accent">
