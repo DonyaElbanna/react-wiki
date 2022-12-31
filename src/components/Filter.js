@@ -1,33 +1,28 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-// import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
 import Status from "./Filters/Status";
 import Species from "./Filters/Species";
 import Gender from "./Filters/Gender";
+import { useState } from "react";
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#EEE",
-//     },
-//     background: {
-//       default: "#222222",
-//     },
-//     accent: {
-//       main: "#8fd746",
-//     },
-//   },
-//   typography: {
-//     fontSize: 20,
-//   },
-// });
+const FilterButton = styled(Button)({
+  color: "#80ff00",
+  textTransform: "none",
+  fontSize: 17,
+  padding: "3px 10px",
+  backgroundColor: "transparent",
+  marginTop: "5px",
+  "&:hover": {
+    backgroundColor: "#16161675",
+    color: "#80ff00",
+  },
+});
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -43,7 +38,7 @@ const Accordion = styled((props) => (
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
-    // expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -69,14 +64,24 @@ const Filter = ({
   setStatus,
   setPage,
   page,
+  spec,
   setSpecies,
+  gen,
   setGender,
-  clearFilters,
+  clearSearch,
 }) => {
-  const [expanded, setExpanded] = React.useState("panel1");
+  const [expanded, setExpanded] = useState("status");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
+  };
+
+  const clearFilters = () => {
+    setPage(1);
+    setStatus("");
+    setSpecies("");
+    setGender("");
+    setExpanded("status");
   };
 
   return (
@@ -84,14 +89,18 @@ const Filter = ({
       {/* <ThemeProvider theme={theme}> */}
       {/* <CssBaseline /> */}
       <div className="filter-header">
-        <div>Filters</div>
-        <Button href="#text-buttons" onClick={clearFilters}>
+        {/* <div>Filters</div> */}
+        <FilterButton variant="text" onClick={clearSearch}>
+          Clear Search
+        </FilterButton>
+        <FilterButton variant="text" onClick={clearFilters}>
           Clear Filters
-        </Button>
+        </FilterButton>
       </div>
       <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
+        defaultExpanded={true}
+        expanded={expanded === "status"}
+        onChange={handleChange("status")}
         sx={{
           backgroundColor: "#16161675",
         }}
@@ -109,13 +118,18 @@ const Filter = ({
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <Status setStatus={setStatus} setPage={setPage} page={page} />
+            <Status
+              stat={stat}
+              setStatus={setStatus}
+              setPage={setPage}
+              page={page}
+            />
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
+        expanded={expanded === "species"}
+        onChange={handleChange("species")}
         sx={{
           backgroundColor: "#16161675",
         }}
@@ -133,13 +147,18 @@ const Filter = ({
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <Species setSpecies={setSpecies} setPage={setPage} page={page} />
+            <Species
+              spec={spec}
+              setSpecies={setSpecies}
+              setPage={setPage}
+              page={page}
+            />
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
+        expanded={expanded === "gender"}
+        onChange={handleChange("gender")}
         sx={{
           backgroundColor: "#16161675",
         }}
@@ -157,7 +176,12 @@ const Filter = ({
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <Gender setGender={setGender} page={page} setPage={setPage} />
+            <Gender
+              gen={gen}
+              setGender={setGender}
+              page={page}
+              setPage={setPage}
+            />
           </Typography>
         </AccordionDetails>
       </Accordion>

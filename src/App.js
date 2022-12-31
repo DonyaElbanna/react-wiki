@@ -8,6 +8,7 @@ import Search from "./components/Search";
 import PaginationBar from "./components/PaginationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Navigation from "./components/Navigation";
 
 const theme = createTheme({
   palette: {
@@ -69,7 +70,16 @@ function App() {
     })();
   }, [api]);
 
-  const clearFilters = () => {
+  // const clearFilters = () => {
+  //   setPage(1);
+  //   setStatus("");
+  //   setSpecies("");
+  //   setGender("");
+  //   setExpanded("status");
+  // };
+
+  const clearSearch = (e) => {
+    setSearchInput("");
     setPage(1);
     setStatus("");
     setSpecies("");
@@ -107,18 +117,23 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        {/* <Navbar /> */}
+        <Navigation />
         <h1>Characters</h1>
-        <Search setSearchInput={setSearchInput} />
+        <Search searchInput={searchInput} setSearchInput={setSearchInput} />
         <Grid container spacing={5}>
           <Grid xs={12} sm={4} md={3}>
             <Filter
               results={results}
               page={page}
               setPage={setPage}
+              stat={status}
               setStatus={setStatus}
+              spec={species}
               setSpecies={setSpecies}
+              gen={gender}
               setGender={setGender}
-              clearFilters={clearFilters}
+              clearSearch={clearSearch}
             ></Filter>
           </Grid>
           <CardItem results={results} />

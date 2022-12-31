@@ -1,6 +1,5 @@
 import React from "react";
 import Input from "@mui/material/Input";
-import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -10,39 +9,31 @@ const theme = createTheme({
     },
     background: {
       default: "#222222",
-      // contrastText: "#EEE",
     },
     accent: {
-      main: "#8fd746",
+      main: "#80ff00",
     },
   },
   typography: {
-    // fontFamily: ["Poppins"],
     fontSize: 20,
   },
 });
 
-const Search = ({ setSearchInput }) => {
-  //   const searchBtn = (e) => {
-  //     e.preventDefault();
-  //   };
-
+const Search = ({ searchInput, setSearchInput }) => {
   return (
     <div className="search">
       <ThemeProvider theme={theme}>
         <Input
           type="text"
           placeholder="Seach For Characters..."
+          value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           style={{
-            paddingLeft: "1%",
+            paddingLeft: "25px",
             color: "white",
           }}
           color="accent"
         ></Input>
-        <Button variant="contained" color="accent">
-          Search
-        </Button>
       </ThemeProvider>
     </div>
   );

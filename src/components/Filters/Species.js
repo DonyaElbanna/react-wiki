@@ -1,33 +1,43 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import Radio from "@mui/material/Radio";
+import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import PropTypes from "prop-types";
 
-const BootstrapButton = styled(Button)({
-  color: "#80ff00",
-  textTransform: "none",
-  fontSize: 17,
-  padding: "3px 10px",
-  border: "1px solid",
-  backgroundColor: "transparent",
-  borderColor: "#80ff00",
-  "&:hover": {
-    backgroundColor: "transparent",
-    borderColor: "#4f9508",
-    color: "#65b911",
+const StyledFormControlLabel = styled((props) => (
+  <FormControlLabel {...props} />
+))(({ theme, checked }) => ({
+  ".MuiTypography-root": {
+    border: "1px solid #80ff00",
+    fontSize: 17,
+    padding: "3px 10px",
+    borderRadius: "5px",
   },
-  "&:active": {
+  ".MuiFormControlLabel-label": checked && {
     color: "white",
     backgroundColor: "#8fd7466e",
-    borderColor: "#8fd746",
+    fontSize: 17,
+    padding: "3px 10px",
+    border: "1px solid #80ff00",
+    borderRadius: "5px",
   },
-  "&:focus": {
-    color: "white",
-    backgroundColor: "#8fd7466e",
-    borderColor: "#8fd746",
-  },
-});
+}));
 
-const Species = ({ setSpecies, setPage, page }) => {
+function MyFormControlLabel(props) {
+  const radioGroup = useRadioGroup();
+  let checked = false;
+  if (radioGroup) {
+    checked = radioGroup.value === props.value;
+  }
+  return <StyledFormControlLabel checked={checked} {...props} />;
+}
+
+MyFormControlLabel.propTypes = {
+  value: PropTypes.any,
+};
+
+const Species = ({ spec, setSpecies, setPage, page }) => {
   const species = [
     "Human",
     "Alien",
@@ -41,19 +51,27 @@ const Species = ({ setSpecies, setPage, page }) => {
     "Unknown",
   ];
 
-  const handleSetSpecies = (e) => {
-    setSpecies(e.target.innerText);
+  const handleSetSpecies = (event, value) => {
+    setSpecies(event.target.defaultValue);
     setPage(1);
   };
 
   return (
-    <div class="filter-btns">
-      {species.map((item, index) => (
-        <BootstrapButton key={index} onClick={handleSetSpecies}>
-          {item}
-        </BootstrapButton>
-      ))}
-    </div>
+    <RadioGroup
+      value={spec}
+      onChange={handleSetSpecies}
+    >
+      <div class="filter-btns">
+        {species.map((item, index) => (
+          <MyFormControlLabel
+            key={index}
+            value={item}
+            control={<Radio />}
+            label={item}
+          />
+        ))}
+      </div>
+    </RadioGroup>
   );
 };
 

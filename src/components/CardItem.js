@@ -35,8 +35,8 @@ const CardItem = ({ results }) => {
                     badgeContent={status}
                     style={{
                       position: "absolute",
-                      top: "10px",
-                      right: status === "unknown" ? "40px" : "25px",
+                      top: "13px",
+                      right: status === "unknown" ? "43px" : "27px",
                     }}
                   />
                   <CardMedia
@@ -57,7 +57,6 @@ const CardItem = ({ results }) => {
                   </Typography>
                 </CardContent>
               </Card>
-              {/* </Badge> */}
             </Grid>
           );
         })

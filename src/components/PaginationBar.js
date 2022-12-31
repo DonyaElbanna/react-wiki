@@ -10,24 +10,17 @@ const theme = createTheme({
     },
     background: {
       default: "#222222",
-      // contrastText: "#EEE",
     },
     accent: {
       main: "#8fd746",
     },
   },
   typography: {
-    // fontFamily: ["Poppins"],
     fontSize: 20,
   },
 });
 
-const PaginationBar = ({
-  info,
-  //  pageBtn,
-  page,
-  setPage,
-}) => {
+const PaginationBar = ({ info, page, setPage }) => {
   const handlePageChange = (event, value) => {
     setPage(value);
   };

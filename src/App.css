@@ -6,11 +6,17 @@
 h1 {
   text-align: center;
   color: whitesmoke;
+  /* margin-top: 70px; */
 }
 
-/* .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.css-1xez8po-MuiPaper-root-MuiCard-root {
-  margin: auto;
-} */
+/* Navbar */
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+}
 
 /* Search */
 
@@ -18,13 +24,7 @@ h1 {
   text-align: center;
   margin-bottom: 2%;
   color: rgb(255, 255, 255);
-  /* display: grid;
-  grid-template-columns: auto auto; */
 }
-
-/* .search > input {
-  color: whitesmoke;
-} */
 
 /* Filter */
 
@@ -33,12 +33,12 @@ h1 {
   text-align: center;
 }
 
-.filter a {
+.clear-btn {
   color: #8fd746;
   margin-top: 3%;
 }
 
-.filter a:hover {
+.clear-btn:hover {
   background-color: #16161675;
 }
 
@@ -52,14 +52,22 @@ h1 {
   justify-content: center;
   row-gap: 15px;
   column-gap: 15px;
-  margin: auto;
+}
+
+span.MuiButtonBase-root {
+  display: none;
+}
+
+label.MuiFormControlLabel-root {
+  margin: 0px;
 }
 
 /* Card */
 
 span.MuiBadge-badge {
-  font-size: 17px;
+  font-size: 18px;
   border-radius: 0px;
+  padding: 15px 7px;
 }
 
 .MuiTypography-h5 {
