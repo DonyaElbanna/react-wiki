@@ -42,8 +42,17 @@ h1 {
   background-color: #16161675;
 }
 
-.filter-btns {
+.filter-header {
   margin-bottom: 5%;
+}
+
+.filter-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 15px;
+  column-gap: 15px;
+  margin: auto;
 }
 
 /* Card */

@@ -22,9 +22,14 @@ const theme = createTheme({
   },
 });
 
-const PaginationBar = ({ info, setPage }) => {
-  const pageBtn = (e) => {
-    setPage(e.target.innerText);
+const PaginationBar = ({
+  info,
+  //  pageBtn,
+  page,
+  setPage,
+}) => {
+  const handlePageChange = (event, value) => {
+    setPage(value);
   };
 
   return (
@@ -35,9 +40,11 @@ const PaginationBar = ({ info, setPage }) => {
             count={info.pages}
             variant="outlined"
             shape="rounded"
-            onClick={pageBtn}
             color="accent"
+            page={page}
+            onChange={handlePageChange}
             sx={{ button: { color: "primary.main" } }}
+            boundaryCount={2}
           />
         </Stack>
       </ThemeProvider>

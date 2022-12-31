@@ -56,13 +56,11 @@ function App() {
   const { info, results } = fetchedData;
   const [searchInput, setSearchInput] = useState("");
   const [page, setPage] = useState(1);
-  // const [clicked, setClicked] = useState(false);
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [gender, setGender] = useState("");
 
-  // const showDetails = () => {
-  //   setClicked(true);
-  // };
-
-  let api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchInput}`;
+  let api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchInput}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
     (async () => {
@@ -70,7 +68,14 @@ function App() {
       setFetchedData(data);
     })();
   }, [api]);
-  // console.log(info);
+
+  const clearFilters = () => {
+    setPage(1);
+    setStatus("");
+    setSpecies("");
+    setGender("");
+  };
+
   // const theme = createTheme({
   //   palette: {
   //     primary: {
@@ -94,6 +99,10 @@ function App() {
   //   },
   // });
 
+  // const pageBtn = (e) => {
+  //   setPage(parseInt(e.target.innerText));
+  // };
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -102,11 +111,24 @@ function App() {
         <Search setSearchInput={setSearchInput} />
         <Grid container spacing={5}>
           <Grid xs={12} sm={4} md={3}>
-            <Filter />
+            <Filter
+              results={results}
+              page={page}
+              setPage={setPage}
+              setStatus={setStatus}
+              setSpecies={setSpecies}
+              setGender={setGender}
+              clearFilters={clearFilters}
+            ></Filter>
           </Grid>
           <CardItem results={results} />
         </Grid>
-        <PaginationBar info={info ? info : ""} setPage={setPage} />
+        <PaginationBar
+          info={info ? info : ""}
+          // pageBtn={pageBtn}
+          page={page}
+          setPage={setPage}
+        />
       </ThemeProvider>
     </div>
   );

@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
+
 const CardItem = ({ results }) => {
   return (
     <Grid
@@ -44,7 +45,6 @@ const CardItem = ({ results }) => {
                     alt={name + " image"}
                   />
                 </div>
-
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {result.name}
