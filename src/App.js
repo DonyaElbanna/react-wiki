@@ -1,14 +1,14 @@
 import "./App.css";
-// import CardItem from "./components/CardItem";
-import Filter from "./components/Filter";
 import { useEffect, useState } from "react";
-import Grid from "@mui/material/Unstable_Grid2";
-import CardItem from "./components/CardItem";
-import Search from "./components/Search";
-import PaginationBar from "./components/PaginationBar";
+// import Search from "./components/Search";
+// import PaginationBar from "./components/PaginationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Navigation from "./components/Navigation";
+import Navbar from "./components/Navbar";
+// import Home from "./components/Home";
+// import Episodes from "./components/Episodes";
+// import Locations from "./components/Locations";
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -21,7 +21,7 @@ const theme = createTheme({
     // },
     background: {
       default: "#222222",
-      contrastText: "#EEE",
+      // contrastText: "#EEE",
     },
     // accent: {
     //   main: "#8fd746",
@@ -61,7 +61,7 @@ function App() {
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState("");
 
-  let api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchInput}&status=${status}&gender=${gender}&species=${species}`;
+  const api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchInput}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
     (async () => {
@@ -69,6 +69,12 @@ function App() {
       setFetchedData(data);
     })();
   }, [api]);
+
+
+// EPISODES
+
+
+
 
   // const clearFilters = () => {
   //   setPage(1);
@@ -86,63 +92,24 @@ function App() {
     setGender("");
   };
 
-  // const theme = createTheme({
-  //   palette: {
-  //     primary: {
-  //       main: "#ffff00",
-  //       contrastText: "#EEE",
-  //     },
-  //     secondary: {
-  //       main: "#EEE",
-  //     },
-  //     background: {
-  //       default: "#222222",
-  //       contrastText: "#EEE",
-  //     },
-  //     accent: {
-  //       main: "#8fd746",
-  //     },
-  //   },
-  //   typography: {
-  //     fontFamily: ["Poppins"],
-  //     fontSize: 18,
-  //   },
-  // });
-
-  // const pageBtn = (e) => {
-  //   setPage(parseInt(e.target.innerText));
-  // };
-
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <Navbar /> */}
-        <Navigation />
-        <h1>Characters</h1>
-        <Search searchInput={searchInput} setSearchInput={setSearchInput} />
-        <Grid container spacing={5}>
-          <Grid xs={12} sm={4} md={3}>
-            <Filter
-              results={results}
-              page={page}
-              setPage={setPage}
-              stat={status}
-              setStatus={setStatus}
-              spec={species}
-              setSpecies={setSpecies}
-              gen={gender}
-              setGender={setGender}
-              clearSearch={clearSearch}
-            ></Filter>
-          </Grid>
-          <CardItem results={results} />
-        </Grid>
-        <PaginationBar
-          info={info ? info : ""}
-          // pageBtn={pageBtn}
+        <Navbar
+          results={results}
           page={page}
           setPage={setPage}
+          stat={status}
+          setStatus={setStatus}
+          spec={species}
+          setSpecies={setSpecies}
+          gen={gender}
+          setGender={setGender}
+          clearSearch={clearSearch}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          info={info ? info : ""}
         />
       </ThemeProvider>
     </div>

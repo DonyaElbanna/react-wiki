@@ -13,6 +13,9 @@ const StyledFormControlLabel = styled((props) => (
     fontSize: 17,
     padding: "3px 10px",
     borderRadius: "5px",
+    "&:hover": {
+      color: "white",
+    },
   },
   ".MuiFormControlLabel-label": checked && {
     color: "white",

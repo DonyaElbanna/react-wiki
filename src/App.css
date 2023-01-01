@@ -6,7 +6,7 @@
 h1 {
   text-align: center;
   color: whitesmoke;
-  /* margin-top: 70px; */
+  margin-top: 0;
 }
 
 /* Navbar */
@@ -82,4 +82,10 @@ span.MuiBadge-badge {
 
 svg.MuiSvgIcon-root {
   color: #8fd746;
+}
+
+/* Episodes */
+.episode-heading {
+  color: white;
+  text-align: center;
 }

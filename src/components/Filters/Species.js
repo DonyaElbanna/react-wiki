@@ -13,6 +13,9 @@ const StyledFormControlLabel = styled((props) => (
     fontSize: 17,
     padding: "3px 10px",
     borderRadius: "5px",
+    "&:hover": {
+      color: "white",
+    },
   },
   ".MuiFormControlLabel-label": checked && {
     color: "white",
@@ -57,10 +60,7 @@ const Species = ({ spec, setSpecies, setPage, page }) => {
   };
 
   return (
-    <RadioGroup
-      value={spec}
-      onChange={handleSetSpecies}
-    >
+    <RadioGroup value={spec} onChange={handleSetSpecies}>
       <div class="filter-btns">
         {species.map((item, index) => (
           <MyFormControlLabel

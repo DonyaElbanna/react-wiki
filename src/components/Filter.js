@@ -20,7 +20,7 @@ const FilterButton = styled(Button)({
   marginTop: "5px",
   "&:hover": {
     backgroundColor: "#16161675",
-    color: "#80ff00",
+    color: "white",
   },
 });
 
@@ -31,9 +31,6 @@ const Accordion = styled((props) => (
   "&:not(:last-child)": {
     borderBottom: 0,
   },
-  // "&:before": {
-  //   display: "none",
-  // },
 }));
 
 const AccordionSummary = styled((props) => (
@@ -42,9 +39,6 @@ const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor: theme.palette === "#ff0000",
-  // : "rgba(0, 0, 0, .03)",
-  flexDirection: "row-reverse",
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(90deg)",
   },
@@ -86,10 +80,7 @@ const Filter = ({
 
   return (
     <div className="filter">
-      {/* <ThemeProvider theme={theme}> */}
-      {/* <CssBaseline /> */}
       <div className="filter-header">
-        {/* <div>Filters</div> */}
         <FilterButton variant="text" onClick={clearSearch}>
           Clear Search
         </FilterButton>
@@ -185,7 +176,6 @@ const Filter = ({
           </Typography>
         </AccordionDetails>
       </Accordion>
-      {/* </ThemeProvider> */}
     </div>
   );
 };
