@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 // import Episodes from "./components/Episodes";
 // import Locations from "./components/Locations";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ToTopBtn from "./components/ToTopBtn";
 
 const theme = createTheme({
   palette: {
@@ -52,6 +53,9 @@ const theme = createTheme({
 
 // import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+
+
+
 function App() {
   const [fetchedData, setFetchedData] = useState([]);
   const { info, results } = fetchedData;
@@ -60,6 +64,7 @@ function App() {
   const [status, setStatus] = useState("");
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchInput}&status=${status}&gender=${gender}&species=${species}`;
 
@@ -67,22 +72,16 @@ function App() {
     (async () => {
       const data = await fetch(api).then((response) => response.json());
       setFetchedData(data);
+      setLoading(false);
     })();
   }, [api]);
 
-
-// EPISODES
-
-
-
-
-  // const clearFilters = () => {
-  //   setPage(1);
-  //   setStatus("");
-  //   setSpecies("");
-  //   setGender("");
-  //   setExpanded("status");
-  // };
+  const clearFilter = () => {
+    setPage(1);
+    setStatus("");
+    setSpecies("");
+    setGender("");
+  };
 
   const clearSearch = (e) => {
     setSearchInput("");
@@ -96,8 +95,9 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <ToTopBtn/>
         <Navbar
-          results={results}
+          results={loading ? "loading" : results}
           page={page}
           setPage={setPage}
           stat={status}
@@ -110,6 +110,7 @@ function App() {
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           info={info ? info : ""}
+          clearFilter={clearFilter}
         />
       </ThemeProvider>
     </div>

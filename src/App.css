@@ -1,15 +1,29 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   margin: 0 2%;
   width: 95%;
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
   color: whitesmoke;
-  margin-top: 0;
+  margin: 0;
+  font-weight: 500;
+}
+
+h2 {
+  margin-bottom: 4%;
 }
 
 /* Navbar */
+
+.accent {
+  color: #80ff00;
+}
 
 .nav-links {
   display: flex;
@@ -22,7 +36,7 @@ h1 {
 
 .search {
   text-align: center;
-  margin-bottom: 2%;
+  margin-bottom: 4%;
   color: rgb(255, 255, 255);
 }
 
@@ -88,4 +102,11 @@ svg.MuiSvgIcon-root {
 .episode-heading {
   color: white;
   text-align: center;
+}
+
+/* Locations */
+
+.minor-titles {
+  display: flex;
+  justify-content: space-evenly;
 }

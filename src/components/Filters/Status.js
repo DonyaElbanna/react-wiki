@@ -4,6 +4,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import PropTypes from "prop-types";
+import { FormLabel } from "@mui/material";
 
 const StyledFormControlLabel = styled((props) => (
   <FormControlLabel {...props} />
@@ -29,13 +30,10 @@ const StyledFormControlLabel = styled((props) => (
 
 function MyFormControlLabel(props) {
   const radioGroup = useRadioGroup();
-
   let checked = false;
-
   if (radioGroup) {
     checked = radioGroup.value === props.value;
   }
-
   return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
@@ -52,22 +50,21 @@ const Status = ({ stat, setStatus, setPage, page }) => {
   };
 
   return (
-    <RadioGroup value={stat} onChange={handleSetStatus}>
-      <div class="filter-btns">
-        {status.map((item, index) => (
-          // <Button onClick={handleSetStatus}>
-          <MyFormControlLabel
-            key={index}
-            value={item}
-            control={<Radio />}
-            // onChange={handleChange}
-            label={item}
-          />
-          // {item}
-          // </Button>
-        ))}
-      </div>
-    </RadioGroup>
+    <div>
+      <FormLabel style={{ display: "none" }}>Status</FormLabel>
+      <RadioGroup value={stat} onChange={handleSetStatus}>
+        <div className="filter-btns">
+          {status.map((item, index) => (
+            <MyFormControlLabel
+              key={index}
+              value={item}
+              control={<Radio />}
+              label={item}
+            />
+          ))}
+        </div>
+      </RadioGroup>
+    </div>
   );
 };
 

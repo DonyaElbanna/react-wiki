@@ -26,7 +26,7 @@ const PaginationBar = ({ info, page, setPage }) => {
   };
 
   return (
-    <div class="pagination">
+    <div className="pagination">
       <ThemeProvider theme={theme}>
         <Stack alignItems="center">
           <Pagination

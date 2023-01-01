@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 
-const CardItem = ({ results }) => {
+const CardItem = ({ results, loading }) => {
   return (
     <Grid
       xs={12}
@@ -16,13 +16,17 @@ const CardItem = ({ results }) => {
       rowSpacing={5}
       columnSpacing={{ sm: 1, md: 2 }}
     >
-      {results ? (
+      {results === "0" ? (
+        <h1 style={{ margin: "4% auto" }}>No Residents here</h1>
+      ) : results === "loading" ? (
+        <h1 style={{ margin: "4% auto" }}>Loading...</h1>
+      ) : results ? (
         results.map((result) => {
           let { id, name, image, origin, gender, location, species, status } =
             result;
           return (
-            <Grid xs={12} sm={6} md={4} lg={3}>
-              <Card sx={{ maxWidth: 400 }} key={id}>
+            <Grid xs={12} sm={6} md={4} lg={3} key={id}>
+              <Card sx={{ maxWidth: 400 }}>
                 <div style={{ position: "relative" }}>
                   <Badge
                     color={
@@ -46,10 +50,15 @@ const CardItem = ({ results }) => {
                   />
                 </div>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="span">
                     {result.name}
+                    <br></br>
                   </Typography>
-                  <Typography variant="body1" color="text.info">
+                  <Typography
+                    variant="body1"
+                    color="text.info"
+                    component="span"
+                  >
                     Gender: {gender} <br></br>
                     Species: {species} <br></br>
                     Origin: {origin.name} <br></br>
@@ -61,7 +70,7 @@ const CardItem = ({ results }) => {
           );
         })
       ) : (
-        <div>No Caharacters Found</div>
+        <h1 style={{ margin: "4% auto" }}>No Characters Found</h1>
       )}
     </Grid>
   );

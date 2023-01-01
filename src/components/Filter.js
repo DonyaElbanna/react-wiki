@@ -105,10 +105,10 @@ const Filter = ({
           }}
           style={{ color: "white" }}
         >
-          <Typography>Status</Typography>
+          <Typography component="span">Status</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component="span">
             <Status
               stat={stat}
               setStatus={setStatus}
@@ -134,10 +134,10 @@ const Filter = ({
           }}
           style={{ color: "white" }}
         >
-          <Typography>Species</Typography>
+          <Typography component="span">Species</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component="span">
             <Species
               spec={spec}
               setSpecies={setSpecies}
@@ -163,10 +163,10 @@ const Filter = ({
           }}
           style={{ color: "white" }}
         >
-          <Typography>Gender</Typography>
+          <Typography component="span">Gender</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component="span">
             <Gender
               gen={gen}
               setGender={setGender}

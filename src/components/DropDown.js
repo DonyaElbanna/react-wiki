@@ -58,13 +58,14 @@ const theme = createTheme({
 });
 
 export default function BasicSelect({
-  episodesN,
+  number,
   name,
-  setEpisodeId,
-  episodeId,
+  id,
+  setId,
+  label
 }) {
   const handleChange = (event) => {
-    setEpisodeId(event.target.value);
+    setId(event.target.value);
   };
 
   return (
@@ -73,21 +74,19 @@ export default function BasicSelect({
       <Box sx={{ minWidth: 120 }}>
         <StyledFormControl fullWidth>
           <InputLabel
-            id="demo-simple-select-label"
             style={{ color: "white", borderColor: "white" }}
           >
-            Pick an Episode
+            {label}
           </InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={episodeId}
-            label="Pick an Episode"
+            value={id}
+            label={label}
             onChange={handleChange}
             MenuProps={MenuProps}
             style={{ color: "white" }}
           >
-            {[...Array(episodesN).keys()].map((n, index) => {
+            {[...Array(number).keys()].map((n, index) => {
               return (
                 <MenuItem value={n + 1} key={index}>
                   {name} - {n + 1}

@@ -4,6 +4,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import PropTypes from "prop-types";
+import { FormLabel } from "@mui/material";
 
 const StyledFormControlLabel = styled((props) => (
   <FormControlLabel {...props} />
@@ -49,18 +50,21 @@ const Gender = ({ gen, setGender, setPage, page }) => {
   };
 
   return (
-    <RadioGroup value={gen} onChange={handleSetGender}>
-      <div class="filter-btns">
-        {gender.map((item, index) => (
-          <MyFormControlLabel
-            key={index}
-            value={item}
-            control={<Radio />}
-            label={item}
-          />
-        ))}
-      </div>
-    </RadioGroup>
+    <div>
+      <FormLabel style={{ display: "none" }}>Gender</FormLabel>
+      <RadioGroup value={gen} onChange={handleSetGender}>
+        <div className="filter-btns">
+          {gender.map((item, index) => (
+            <MyFormControlLabel
+              key={index}
+              value={item}
+              control={<Radio />}
+              label={item}
+            />
+          ))}
+        </div>
+      </RadioGroup>
+    </div>
   );
 };
 

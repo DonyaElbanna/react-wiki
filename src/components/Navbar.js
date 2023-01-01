@@ -22,7 +22,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -40,7 +40,7 @@ const theme = createTheme({
 const NavItem = styled(Tab)({
   color: "#fff",
   textTransform: "none",
-  fontSize: 21,
+  fontSize: 22,
   "&:hover": {
     color: "#80ff00",
   },
@@ -60,6 +60,7 @@ export default function NavLinks({
   searchInput,
   setSearchInput,
   info,
+  clearFilter
 }) {
   const [value, setValue] = React.useState(0);
 
@@ -72,15 +73,15 @@ export default function NavLinks({
       <ThemeProvider theme={theme}>
         <Box sx={{ borderBottom: 3, borderColor: "divider" }}>
           <div className="nav-links">
-            <div style={{ fontSize: "22px" }}>
-              Rick & Morty <span style={{ color: "#80ff00" }}>Wiki</span>
+            <div style={{ fontSize: "25px" }}>
+              Rick & Morty <span className="accent">Wiki</span>
             </div>
             <Tabs
               value={value}
               onChange={handleChange}
               // sx={{ display: { xs: "none", md: "block" } }}
             >
-              <NavItem label="Characters" />
+              <NavItem label="Characters" onClick={clearFilter}/>
               <NavItem label="Episodes" />
               <NavItem label="Locations" />
             </Tabs>
@@ -105,7 +106,7 @@ export default function NavLinks({
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Episodes results={results}/>
+        <Episodes results={results} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Locations />
