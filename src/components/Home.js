@@ -20,7 +20,7 @@ const Home = ({
   info,
 }) => {
   return (
-    <div>
+    <div className="containers">
       <h1>Characters</h1>
       <Search searchInput={searchInput} setSearchInput={setSearchInput} />
       <Grid container spacing={5}>

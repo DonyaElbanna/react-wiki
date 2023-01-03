@@ -14,7 +14,7 @@ import { useState } from "react";
 const FilterButton = styled(Button)({
   color: "#80ff00",
   textTransform: "none",
-  fontSize: 17,
+  fontSize: "1.25rem",
   padding: "3px 10px",
   backgroundColor: "transparent",
   marginTop: "5px",
@@ -35,7 +35,7 @@ const Accordion = styled((props) => (
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "1.2rem" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -45,6 +45,9 @@ const AccordionSummary = styled((props) => (
   "& .MuiAccordionSummary-content": {
     marginLeft: theme.spacing(1),
   },
+  "&.MuiTypography-root": {
+    fontSize: 20
+  }
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
@@ -105,7 +108,7 @@ const Filter = ({
           }}
           style={{ color: "white" }}
         >
-          <Typography component="span">Status</Typography>
+          <Typography component="span" style={{fontSize: '1.25rem'}}>Status</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography component="span">
@@ -134,7 +137,7 @@ const Filter = ({
           }}
           style={{ color: "white" }}
         >
-          <Typography component="span">Species</Typography>
+          <Typography component="span" style={{fontSize: '1.25rem'}}>Species</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography component="span">
@@ -163,7 +166,7 @@ const Filter = ({
           }}
           style={{ color: "white" }}
         >
-          <Typography component="span">Gender</Typography>
+          <Typography component="span" style={{fontSize: '1.25rem'}}>Gender</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography component="span">

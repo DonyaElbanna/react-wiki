@@ -4,14 +4,14 @@ import Radio from "@mui/material/Radio";
 import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import PropTypes from "prop-types";
-import { FormLabel } from "@mui/material";
+import FormLabel from "@mui/material/FormLabel";
 
 const StyledFormControlLabel = styled((props) => (
   <FormControlLabel {...props} />
 ))(({ theme, checked }) => ({
   ".MuiTypography-root": {
     border: "1px solid #80ff00",
-    fontSize: 17,
+    fontSize: "1.2rem",
     padding: "3px 10px",
     borderRadius: "5px",
     "&:hover": {
@@ -21,7 +21,7 @@ const StyledFormControlLabel = styled((props) => (
   ".MuiFormControlLabel-label": checked && {
     color: "white",
     backgroundColor: "#8fd7466e",
-    fontSize: 17,
+    fontSize: "1.2rem",
     padding: "3px 10px",
     border: "1px solid #80ff00",
     borderRadius: "5px",
@@ -62,7 +62,7 @@ const Species = ({ spec, setSpecies, setPage, page }) => {
 
   return (
     <div>
-      <FormLabel style={{display: "none"}}>Species</FormLabel>
+      <FormLabel style={{display: "none"}}>Species</FormLabel>{" "}
       <RadioGroup value={spec} onChange={handleSetSpecies}>
         <div className="filter-btns">
           {species.map((item, index) => (

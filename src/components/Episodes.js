@@ -1,40 +1,22 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import CardItem from "./CardItem";
 import DropDown from "./DropDown";
 
-const Episodes = () => {
-  const [data, setData] = useState([]);
-  const [episodeCharacters, setEpisodeCharacters] = useState([]);
-  const [id, setId] = useState(1);
-
-  const api = `https://rickandmortyapi.com/api/episode/${id}`;
-
-  useEffect(() => {
-    (async function () {
-      const data = await fetch(api).then((res) => res.json());
-      setData(data);
-
-      const charactersData = await Promise.all(
-        data.characters.map((c) => {
-          return fetch(c).then((res) => res.json());
-        })
-      );
-      setEpisodeCharacters(charactersData);
-    })();
-  }, [api]);
-
-  // console.log("first fetch", data.characters);
-  // console.log("second fetch: ", episodeCharacters);
-
+const Episodes = ({
+  episodeData,
+  episodeCharacters,
+  episodeId,
+  setEpisodeId,
+}) => {
   return (
-    <div>
-      <div className="episode-heading">
+    <div className="containers">
+      <div className="episode-heading" style={{marginBottom: "47px"}}>
         <h1>
-          {data.episode}: <span className="accent">{data.name}</span>
+          {episodeData.episode}:{" "}
+          <span className="accent">{episodeData.name}</span>
         </h1>
-        <h2>Air date: {data.air_date}</h2>
+          <h2 >Air date: {episodeData.air_date}</h2>
       </div>
 
       <Grid container spacing={5} className="grid-container">
@@ -42,8 +24,8 @@ const Episodes = () => {
           <DropDown
             number={51}
             name="Episode"
-            id={id}
-            setId={setId}
+            id={episodeId}
+            setId={setEpisodeId}
             label="Pick an Episode"
           />
         </Grid>

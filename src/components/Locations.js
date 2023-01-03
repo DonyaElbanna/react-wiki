@@ -1,45 +1,27 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import CardItem from "./CardItem";
 import DropDown from "./DropDown";
 
-const Episodes = () => {
-  const [data, setData] = useState([]);
-  const [residents, setResidents] = useState([]);
-  const [id, setId] = useState(1);
-  const [loading, setLoading] = useState(true);
-
-  const api = `https://rickandmortyapi.com/api/location/${id}`;
-
-  useEffect(() => {
-    (async function () {
-      const data = await fetch(api).then((res) => res.json());
-      setData(data);
-
-      const residentsData = await Promise.all(
-        data.residents.map((c) => {
-          return fetch(c).then((res) => res.json());
-        })
-      );
-      setResidents(residentsData);
-      setLoading(false);
-    })();
-    
-  }, [api]);
-
-  // console.log("first fetch", data);
-  // console.log("second fetch: ", residents);
-
+const Episodes = ({
+  LocationData,
+  residents,
+  locationId,
+  setLocationId,
+  loading,
+}) => {
   return (
-    <div>
+    <div className="containers">
       <div className="episode-heading">
         <h1>
-          Location: <span className="accent">{data.name}</span>
+          Location: <span className="accent">{LocationData.name}</span>
         </h1>
         <div className="minor-titles">
-          <h2>Type: {data.type}</h2>
-          <h2>Dimension: {data.dimension}</h2>
+          <h2>Type: {LocationData.type ? LocationData.type : "unknown"}</h2>
+          <h2>
+            Dimension:{" "}
+            {LocationData.dimension ? LocationData.dimension : "unknown"}
+          </h2>
         </div>
       </div>
 
@@ -48,8 +30,8 @@ const Episodes = () => {
           <DropDown
             number={126}
             name="Location"
-            id={id}
-            setId={setId}
+            id={locationId}
+            setId={setLocationId}
             label="Pick a Location"
           />
         </Grid>

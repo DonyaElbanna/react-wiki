@@ -4,14 +4,14 @@ import Radio from "@mui/material/Radio";
 import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import PropTypes from "prop-types";
-import { FormLabel } from "@mui/material";
+import FormLabel from "@mui/material/FormLabel";
 
 const StyledFormControlLabel = styled((props) => (
   <FormControlLabel {...props} />
 ))(({ theme, checked }) => ({
   ".MuiTypography-root": {
     border: "1px solid #80ff00",
-    fontSize: 17,
+    fontSize: "1.2rem",
     padding: "3px 10px",
     borderRadius: "5px",
     "&:hover": {
@@ -21,7 +21,7 @@ const StyledFormControlLabel = styled((props) => (
   ".MuiFormControlLabel-label": checked && {
     color: "white",
     backgroundColor: "#8fd7466e",
-    fontSize: 17,
+    fontSize: "1.2rem",
     padding: "3px 10px",
     border: "1px solid #80ff00",
     borderRadius: "5px",
@@ -51,7 +51,7 @@ const Gender = ({ gen, setGender, setPage, page }) => {
 
   return (
     <div>
-      <FormLabel style={{ display: "none" }}>Gender</FormLabel>
+      <FormLabel style={{ display: "none" }}>Gender</FormLabel>{" "}
       <RadioGroup value={gen} onChange={handleSetGender}>
         <div className="filter-btns">
           {gender.map((item, index) => (

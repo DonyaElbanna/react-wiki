@@ -9,7 +9,7 @@ import Fade from "@mui/material/Fade";
 function ScrollTop(props) {
   const { children } = props;
   const trigger = useScrollTrigger({
-    threshold: 1300,
+    threshold: 1000,
   });
 
   const handleClick = (event) => {

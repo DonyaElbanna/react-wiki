@@ -1,60 +1,24 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-// import Search from "./components/Search";
-// import PaginationBar from "./components/PaginationBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Navbar from "./components/Navbar";
-// import Home from "./components/Home";
-// import Episodes from "./components/Episodes";
-// import Locations from "./components/Locations";
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+import Episodes from "./components/Episodes";
+import Locations from "./components/Locations";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ToTopBtn from "./components/ToTopBtn";
+import Navigation from "./components/Navigation";
 
 const theme = createTheme({
   palette: {
-    // primary: {
-    //   main: "#8fd746",
-    //   contrastText: "#ffffff",
-    // },
-    // secondary: {
-    //   main: "#EEE",
-    // },
     background: {
       default: "#222222",
-      // contrastText: "#EEE",
     },
-    // accent: {
-    //   main: "#8fd746",
-    // },
   },
   typography: {
-    // fontFamily: ["Roboto"],
     fontSize: 16,
   },
 });
-
-// import { styled } from "@mui/material/styles";
-// import Box from "@mui/material/Box";
-// import Paper from "@mui/material/Paper";
-// import { withTheme } from "@mui/material";
-// import Card from "@mui/material/Card";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Typography from "@mui/material/Typography";
-// import { CardActionArea } from "@mui/material";
-// import { lightGreen } from "@mui/material/colors";
-// import Button from "@mui/material/Button";
-// import Pagination from "@mui/material/Pagination";
-// import Badge from "@mui/material/Badge";
-// import Stack from "@mui/material/Stack";
-// import CssBaseline from "@mui/material/CssBaseline";
-// import Input from "@mui/material/Input";
-
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
-
-
-
 
 function App() {
   const [fetchedData, setFetchedData] = useState([]);
@@ -66,6 +30,17 @@ function App() {
   const [gender, setGender] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // Episodes State
+  const [episodeData, setEpisodeData] = useState([]);
+  const [episodeCharacters, setEpisodeCharacters] = useState([]);
+  const [episodeId, setEpisodeId] = useState(1);
+
+  // Locations State
+  const [LocationData, setLocationData] = useState([]);
+  const [residents, setResidents] = useState([]);
+  const [locationId, setLocationId] = useState(1);
+
+  // Home Fetch
   const api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchInput}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
@@ -76,14 +51,48 @@ function App() {
     })();
   }, [api]);
 
-  const clearFilter = () => {
-    setPage(1);
-    setStatus("");
-    setSpecies("");
-    setGender("");
-  };
+  // Episodes Fetch
+  const episodeApi = `https://rickandmortyapi.com/api/episode/${episodeId}`;
 
-  const clearSearch = (e) => {
+  useEffect(() => {
+    (async function () {
+      const data = await fetch(episodeApi).then((res) => res.json());
+      setEpisodeData(data);
+
+      const charactersData = await Promise.all(
+        data.characters.map((c) => {
+          return fetch(c).then((res) => res.json());
+        })
+      );
+      setEpisodeCharacters(charactersData);
+    })();
+  }, [episodeApi]);
+
+  // console.log("first Episode fetch", episodeData);
+  // console.log("second Episode fetch: ", episodeCharacters);
+
+  // Locations Fetch
+  const locationsApi = `https://rickandmortyapi.com/api/location/${locationId}`;
+
+  useEffect(() => {
+    (async function () {
+      const data = await fetch(locationsApi).then((res) => res.json());
+      setLocationData(data);
+
+      const residentsData = await Promise.all(
+        data.residents.map((c) => {
+          return fetch(c).then((res) => res.json());
+        })
+      );
+      setResidents(residentsData);
+      setLoading(false);
+    })();
+  }, [locationsApi]);
+
+  // console.log("first fetch", data);
+  // console.log("second fetch: ", residents);
+
+  const clearSearch = () => {
     setSearchInput("");
     setPage(1);
     setStatus("");
@@ -91,28 +100,73 @@ function App() {
     setGender("");
   };
 
+  const clearAll = () => {
+    setSearchInput("");
+    setStatus("");
+    setSpecies("");
+    setGender("");
+    setPage(1);
+    setEpisodeId(1);
+    setLocationId(1);
+  };
+
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <ToTopBtn/>
-        <Navbar
-          results={loading ? "loading" : results}
-          page={page}
-          setPage={setPage}
-          stat={status}
-          setStatus={setStatus}
-          spec={species}
-          setSpecies={setSpecies}
-          gen={gender}
-          setGender={setGender}
-          clearSearch={clearSearch}
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          info={info ? info : ""}
-          clearFilter={clearFilter}
-        />
-      </ThemeProvider>
+      
+      <Router>
+        <ThemeProvider theme={theme}>
+          {/* <CssBaseline /> */}
+          <Navigation clearAll={clearAll}/>
+
+          <ToTopBtn />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  results={results ? results : "loading"}
+                  page={page}
+                  setPage={setPage}
+                  stat={status}
+                  setStatus={setStatus}
+                  spec={species}
+                  setSpecies={setSpecies}
+                  gen={gender}
+                  setGender={setGender}
+                  clearSearch={clearSearch}
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                  info={info}
+                />
+              }
+            />
+            <Route
+              path="/episode"
+              element={
+                <Episodes
+                  results={results}
+                  episodeData={episodeData}
+                  episodeCharacters={episodeCharacters}
+                  episodeId={episodeId}
+                  setEpisodeId={setEpisodeId}
+                />
+              }
+            />
+            <Route
+              path="/location"
+              element={
+                <Locations
+                  LocationData={LocationData}
+                  residents={residents}
+                  locationId={locationId}
+                  setLocationId={setLocationId}
+                  loading={loading}
+                />
+              }
+            />
+          </Routes>
+        </ThemeProvider>
+      </Router>
     </div>
   );
 }

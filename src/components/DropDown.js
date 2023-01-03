@@ -8,13 +8,11 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { styled } from "@mui/material/styles";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+const ITEM_HEIGHT = 62;
 const MenuProps = {
   PaperProps: {
     style: {
-      maxHeight: ITEM_HEIGHT * 7.5 + ITEM_PADDING_TOP,
-      //   width: 150,
+      maxHeight: ITEM_HEIGHT * 6,
     },
   },
 };
@@ -49,7 +47,6 @@ const theme = createTheme({
     },
     background: {
       default: "#222222",
-      // contrastText: "#EEE",
     },
   },
   typography: {
