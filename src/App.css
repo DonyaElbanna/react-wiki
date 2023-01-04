@@ -20,21 +20,19 @@
 }
 
 .navbar-nav {
-  align-items: center;
   margin: 5px auto;
-  font-size: 1.6rem;
+  font-size: 1.54rem;
 }
 
 .accent {
   color: #80ff00;
 }
 
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  align-items: center;
+.active {
+  color: #80ff00 !important;
+  font-weight: bold !important;
 }
+
 
 /* Home */
 
@@ -54,10 +52,7 @@ h2 {
   margin-bottom: 4%;
 }
 
-.active {
-  color: #80ff00 !important;
-  font-weight: bold;
-}
+
 
 /* Search */
 

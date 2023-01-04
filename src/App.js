@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Home from "./components/Home";
 import Episodes from "./components/Episodes";
 import Locations from "./components/Locations";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ToTopBtn from "./components/ToTopBtn";
 import Navigation from "./components/Navigation";
 
@@ -65,6 +65,7 @@ function App() {
         })
       );
       setEpisodeCharacters(charactersData);
+      setLoading(false);
     })();
   }, [episodeApi]);
 
@@ -112,19 +113,16 @@ function App() {
 
   return (
     <div className="App">
-      
-      <Router>
+      <BrowserRouter>
         <ThemeProvider theme={theme}>
-          {/* <CssBaseline /> */}
-          <Navigation clearAll={clearAll}/>
-
+          <Navigation clearAll={clearAll} />
           <ToTopBtn />
           <Routes>
             <Route
               path="/"
               element={
                 <Home
-                  results={results ? results : "loading"}
+                  results={loading ? "loading" : results}
                   page={page}
                   setPage={setPage}
                   stat={status}
@@ -137,6 +135,7 @@ function App() {
                   searchInput={searchInput}
                   setSearchInput={setSearchInput}
                   info={info}
+                  loading={loading}
                 />
               }
             />
@@ -166,7 +165,7 @@ function App() {
             />
           </Routes>
         </ThemeProvider>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

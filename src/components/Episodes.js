@@ -11,14 +11,13 @@ const Episodes = ({
 }) => {
   return (
     <div className="containers">
-      <div className="episode-heading" style={{marginBottom: "47px"}}>
+      <div className="episode-heading" style={{ marginBottom: "4.5%" }}>
         <h1>
           {episodeData.episode}:{" "}
           <span className="accent">{episodeData.name}</span>
         </h1>
-          <h2 >Air date: {episodeData.air_date}</h2>
+        <h2>Air date: {episodeData.air_date}</h2>
       </div>
-
       <Grid container spacing={5} className="grid-container">
         <Grid xs={12} sm={4} md={3}>
           <DropDown

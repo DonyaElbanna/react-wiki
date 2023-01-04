@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, Navbar, NavLink } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 
 const Navigation = ({ clearAll }) => {
   return (
@@ -15,12 +15,7 @@ const Navigation = ({ clearAll }) => {
         />
         <Navbar.Collapse id="navbarScroll">
           <Nav onClick={clearAll}>
-            <NavLink
-              eventKey="1"
-              as={Link}
-              to="/"
-              className={({ isActive }) => (isActive ? "active" : "inactive")}
-            >
+            <NavLink eventKey="1" as={Link} to="/">
               Characters
             </NavLink>
             <NavLink eventKey="2" as={Link} to="/episode">

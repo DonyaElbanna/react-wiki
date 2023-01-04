@@ -24,7 +24,6 @@ const Episodes = ({
           </h2>
         </div>
       </div>
-
       <Grid container spacing={5} className="grid-container">
         <Grid xs={12} sm={4} md={3}>
           <DropDown

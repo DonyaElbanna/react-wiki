@@ -18,6 +18,7 @@ const Home = ({
   searchInput,
   setSearchInput,
   info,
+  loading
 }) => {
   return (
     <div className="containers">
@@ -38,7 +39,7 @@ const Home = ({
             clearSearch={clearSearch}
           ></Filter>
         </Grid>
-        <CardItem results={results} />
+        <CardItem results={results ? results: null} />
       </Grid>
       <PaginationBar info={info ? info : ""} page={page} setPage={setPage} />
     </div>
