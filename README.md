@@ -21,9 +21,9 @@ It's a wiki app using the [Rick and Morty Api](https://rickandmortyapi.com/) to 
 
 ![Home Page](/demo/wiki-c.PNG)
 
-#### Characters Page
+#### Episdoes Page
 
-![ Characters Page](/demo/wiki-c.PNG)
+![ Episdoes Page](/demo/wiki-e.PNG)
 
 #### Locations Page
 
