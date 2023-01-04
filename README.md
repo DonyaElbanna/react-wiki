@@ -19,15 +19,15 @@ It's a wiki app using the [Rick and Morty Api](https://rickandmortyapi.com/) to 
 
 #### Home Page
 
-![Home Page](/demo/wiki-c.PNG.PNG)
+![Home Page](/demo/wiki-c.PNG)
 
 #### Characters Page
 
-![ Characters Page](/demo/wiki-c.PNG.PNG)
+![ Characters Page](/demo/wiki-c.PNG)
 
 #### Locations Page
 
-![ Locations Page](/demo/wiki-l.PNG.PNG)
+![ Locations Page](/demo/wiki-l.PNG)
 
 #### To Top button & Pagination
 
