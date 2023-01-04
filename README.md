@@ -2,6 +2,41 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Description
+
+A responsive react app inspired by this [Freecodecamp Article](https://www.freecodecamp.org/news/react-js-project-build-a-rick-and-morty-character-wiki/).
+
+It's a wiki app using the [Rick and Morty Api](https://rickandmortyapi.com/) to filter through the show's characters, episodes and locations, taking care of empty data (locations with no residents and filters with no matching characters).
+
+## Technologies used
+
+- [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [Material UI](https://mui.com/material-ui/)
+- [React-router-dom](https://reactrouter.com/en/main)
+
+## Demo
+
+#### Home Page
+
+![Home Page](/demo/wiki-c.PNG.PNG)
+
+#### Characters Page
+
+![ Characters Page](/demo/wiki-c.PNG.PNG)
+
+#### Locations Page
+
+![ Locations Page](/demo/wiki-l.PNG.PNG)
+
+#### To Top button & Pagination
+
+![To Top button & Pagination](/demo/wiki-u.PNG)
+
+#### Mobile View
+
+![Mobile View](/demo/wiki-m.PNG)
+
 ## Available Scripts
 
 In the project directory, you can run:
